@@ -1,0 +1,734 @@
+/* global.css */
+
+/* === Base Styles === */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary-color: #f59e0b;
+  --light-bg: #f9fafb;
+  --dark-bg: #111827;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --border-radius: 0.375rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  line-height: 1.5;
+  color: var(--text-dark);
+  background-color: var(--light-bg);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === Layout === */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*.app-header {
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.app-header h1 {
+  font-size: 1.8rem;
+  color: var(--text-dark);
+
+}
+.app-header h1::before {
+  content: '🎉';
+  margin-right: 0.5rem;
+  
+}
+.app-header h1::after {
+  content: '🎉';
+
+}
+*/
+
+/* Header Styles */
+.app-header {
+  position: relative;
+  background-color: #2563eb;
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+/* Before pseudo-element */
+.app-header::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* After pseudo-element */
+.app-header::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .app-header::before {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .app-header::after {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+
+/* Button Styles */
+.add-business-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+  margin-left: 9rem;
+}
+
+/* Hover state */
+.add-business-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Before pseudo-element - left side decoration */
+.add-business-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scaleY(0);
+  transition: transform 0.25s ease-out;
+  transform-origin: top;
+  z-index: -1;
+}
+
+/* After pseudo-element - bottom highlight */
+.add-business-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scaleX(0);
+  transition: transform 0.25s ease-out;
+  transform-origin: left;
+  z-index: -1;
+}
+
+/* Animate pseudo-elements on hover */
+.add-business-btn:hover::before {
+  transform: scaleY(1);
+}
+
+.add-business-btn:hover::after {
+  transform: scaleX(1);
+}
+
+/* Focus state for accessibility */
+.add-business-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+/* Active state */
+.add-business-btn:active {
+  transform: translateY(1px);
+}
+
+/* Cancel state - change color when showAddForm is true */
+.add-business-btn[data-cancel="true"] {
+  background-color: #ef4444;
+}
+
+.add-business-btn[data-cancel="true"]:hover {
+  background-color: #dc2626;
+}
+
+
+
+
+
+.app-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.app-footer {
+  background-color: var(--dark-bg);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* === Business List === */
+.business-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.category-header {
+  margin-bottom: 1rem;
+}
+
+.category-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  color: var(--text-light);
+}
+
+/* === Business Card === */
+.business-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.business-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.business-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.business-card p {
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.business-card p strong {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.business-card-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.business-card-footer {
+  padding: 1rem 1.5rem;
+  background-color: var(--gray-100);
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-details-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.view-details-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* === Search & Filter === */
+.search-filter {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-container {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.category-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category-filter label {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.category-filter select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background-color: white;
+  min-width: 200px;
+}
+
+.category-filter select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* === Review Section === */
+.review-section {
+  margin-top: 1.5rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-item {
+  padding: 1rem;
+  background-color: var(--gray-100);
+  border-radius: var(--border-radius);
+}
+
+.review-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reviewer-name {
+  font-weight: 500;
+}
+
+.review-date {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.show-more-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  color: var(--text-light);
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.show-more-btn:hover {
+  background-color: var(--gray-100);
+  border-color: var(--gray-400);
+}
+
+/* === Star Rating === */
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.star {
+  color: var(--gray-300);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.star.filled {
+  color: var(--secondary-color);
+}
+
+/* === Add Business Form === */
+.add-business-form {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.add-business-form h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* === Business Detail === */
+.business-detail {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.back-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--text-light);
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.back-btn:hover {
+  color: var(--primary-color);
+}
+
+.business-header {
+  margin-bottom: 1.5rem;
+}
+
+.business-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.business-category {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.business-description {
+  margin-bottom: 2rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.contact-info h3,
+.business-hours h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.contact-info ul {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.business-hours table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.business-hours td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.business-hours tr:last-child td {
+  border-bottom: none;
+}
+
+.business-hours td:first-child {
+  font-weight: 500;
+  width: 40%;
+}
+
+.reviews-container {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+}
+
+.add-review-btn {
+  display: block;
+  margin-top: 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.add-review-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* === Add Review Form === */
+.add-review-form {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--gray-100);
+  border-radius: var(--border-radius);
+}
+
+.add-review-form h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.rating-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.star-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray-300);
+  transition: var(--transition);
+}
+
+.star-btn.active {
+  color: var(--secondary-color);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.cancel-btn:hover {
+  background-color: var(--gray-100);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1rem;
+  }
+  
+  .app-content {
+    padding: 1rem;
+  }
+  
+  .business-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-filter {
+    flex-direction: column;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .cancel-btn, .submit-btn {
+    width: 100%;
+  }
+}
