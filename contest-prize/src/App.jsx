@@ -12,7 +12,7 @@ const App = () => {
       id: '1',
       name: 'The Green Bistro',
       category: 'Entertainment',
-      description: 'A profesional great looking portfolio talm about vibe coding dont provides the best services .',
+      description: 'A Profesional freelancer Portfolio with years of experience  provides the best services in the community  .',
       contact: {
         phone: '(555) 123-4567',
         email: 'mrmadeus1@gmail.com',
@@ -29,7 +29,7 @@ const App = () => {
       id: '2',
       name: 'Luna Shop',
       category: 'Retail',
-      description: 'A farm-to-table restaurant specializing in organic and locally sourced ingredients.',
+      description: 'A E-commerce shop websites  with great prices differents types of items support  local  .',
       contact: {
         phone: '(555) 123-4567',
         email: 'info@greenbistro.com',
