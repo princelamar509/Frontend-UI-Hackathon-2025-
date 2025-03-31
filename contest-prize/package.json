@@ -1,10 +1,12 @@
 {
-  "homepage": "",
+  "homepage": "https://princelamar509.github.io/Frontend-UI-Hackathon-2025-",
   "name": "contest-prize",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
